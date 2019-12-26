@@ -43,7 +43,15 @@ resource "azurerm_kubernetes_cluster" "cloudcommons" {
 
   role_based_access_control {
     enabled = var.rbac_enabled
-    # azure_active_directory // TODO
+    dynamic "azure_active_directory" {
+      for_each = var.rbac_aad == true ? [1] : []
+      content {
+        client_app_id = var.rbac_aad_client_app_id
+        server_app_id = var.rbac_aad_server_app_id
+        server_app_secret = var.rbac_aad_server_app_secret
+        tenant_id = var.rbac_aad_tenant_id
+      }
+    }
   }
 
   service_principal {

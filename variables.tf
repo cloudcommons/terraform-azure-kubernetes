@@ -153,6 +153,42 @@ variable rbac_enabled {
     default = true
 }
 
+variable rbac_aad {
+  type = bool
+  description = "(Optional) Use Azure Active Directory as RBAC system. If not client_app_id is provided, this module will try creating an Azure Application for you"
+  default = false
+}
+
+variable rbac_aad_admin {
+  type=list(string)
+  description = "(Optional) Default Azure Active Directory user assigned as cluster administrator"  
+  default = null
+}
+
+variable rbac_aad_client_app_id {
+  type = "string"
+  description = "(Optional) The Client ID of an Azure Active Directory Application. Changing this forces a new resource to be created."
+  default = null
+}
+
+variable rbac_aad_server_app_id {
+  type = "string"
+  description = "(Optional) The Server ID of an Azure Active Directory Application. Changing this forces a new resource to be created."
+  default = null
+}
+
+variable rbac_aad_server_app_secret {
+  type = "string"
+  description = "(Optional) The Server Secret of an Azure Active Directory Application. Changing this forces a new resource to be created."
+  default = null
+}
+
+variable rbac_aad_tenant_id {
+  type = "string"
+  description = "(Optional) The Tenant ID used for Azure Active Directory Application. If this isn't specified the Tenant ID of the current Subscription is used. Changing this forces a new resource to be created."
+  default = null
+}
+
 variable linux_admin_username {
   type = string
   description = "(Optional) The Admin Username for the Cluster. Changing this forces a new resource to be created. Defaults to cloudcommons"
