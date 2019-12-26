@@ -108,7 +108,7 @@ variable "auto_scaling_min_count" {
 variable "auto_scaling_max_count" {
   type        = number
   description = "(Optional) The maximum number of nodes which should exist in this Node Pool. If specified this must be between 1 and 100."
-  default     = 8
+  default     = 16
 }
 
 variable "kube_dashboard_enabled" {
