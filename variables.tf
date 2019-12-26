@@ -160,7 +160,7 @@ variable rbac_aad {
 }
 
 variable rbac_aad_admin {
-  type=list(string)
+  type=string
   description = "(Optional) Default Azure Active Directory user assigned as cluster administrator"  
   default = null
 }
