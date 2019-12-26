@@ -96,7 +96,7 @@ variable "node_pool_type" {
 variable "auto_scaling_enable" {
     type = bool
     description = "(Optional) Should the Kubernetes Auto Scaler be enabled for this Node Pool? Defaults to false."
-    default = false
+    default = true
 }
 
 variable "auto_scaling_min_count" {
@@ -108,7 +108,7 @@ variable "auto_scaling_min_count" {
 variable "auto_scaling_max_count" {
     type = number
     description = "(Optional) The maximum number of nodes which should exist in this Node Pool. If specified this must be between 1 and 100."
-    default = 8  
+    default = 8
 }
 
 variable "kube_dashboard_enabled" {
@@ -127,12 +127,6 @@ variable network_plugin {
     type        = string
     description = "(Optional) Network plugin to use for networking. Currently supported values are azure and kubenet. Changing this forces a new resource to be created. Defaults to azure"
     default     = "azure"
-}
-
-variable network_dns_service {
-    type        = string
-    description = "(Optional) IP address within the Kubernetes service address range that will be used by cluster service discovery (kube-dns). This is required when network_plugin is set to azure. Changing this forces a new resource to be created. Defaults to 10.0.2.1 (First IP in the ServiceSubnet). Please check your ServiceSubnet and change accordingly when needed"
-    default     = "10.0.2.1"
 }
 
 variable network_docker_bridge_cidr {
@@ -176,6 +170,12 @@ variable vnet_address_space {
   default     = ["10.0.0.0/21"]
 }
 
+variable vnet_service_cidr {
+  type        = string
+  description = "(Optional) The service cidr"
+  default     = "10.0.2.0/23"
+}
+
 variable vnet_dns_servers {
   type        = list(string)
   description = "(Optional) List of DNS Servers configured in the VNET"
@@ -207,11 +207,12 @@ variable vnet_subnets {
       address_prefix = "10.0.0.0/23"
       security_group = true
     },
-    {
-      name           = "Services"
-      address_prefix = "10.0.2.0/23"
-      security_group = false
-    },
+    # Azure don't like Terraform to create the service subnet... so we should skip it
+    # {
+    #   name           = "Services"
+    #   address_prefix = "10.0.2.0/23"
+    #   security_group = false
+    # },
     {
       name           = "Cluster"
       address_prefix = "10.0.4.0/22"

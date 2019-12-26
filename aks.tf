@@ -1,13 +1,13 @@
 locals {
   node_resource_group = var.node_resource_group == "" ? "${var.name}-aks-${var.node_pool_name}-${var.location}" : var.node_resource_group
-  cluster_subnet_id   = module.vnet.subnets.2.id             // Assuming the cluster subnet is third in the Subnet list
-  service_subnet_cidr = module.vnet.subnets.1.address_prefix // Assuming the service subnet is second in the Subnet list
+  cluster_subnet_id   = module.vnet.subnets.1.id // Assuming the cluster subnet is second in the Subnet list
+  dns_service_ip      = cidrhost(var.vnet_service_cidr, 2)
 }
 
 resource "azurerm_kubernetes_cluster" "cloudcommons" {
   name                = var.name
-  location            = module.resource-group.location
-  resource_group_name = module.resource-group.name
+  location            = module.rg.location
+  resource_group_name = module.rg.name
   dns_prefix          = var.dns_prefix
   kubernetes_version  = var.kubernetes_version
   node_resource_group = local.node_resource_group
@@ -35,9 +35,9 @@ resource "azurerm_kubernetes_cluster" "cloudcommons" {
   network_profile {
     network_plugin     = var.network_plugin
     network_policy     = var.network_policy
-    dns_service_ip     = var.network_dns_service
+    dns_service_ip     = local.dns_service_ip
     docker_bridge_cidr = var.network_docker_bridge_cidr
-    service_cidr       = local.service_subnet_cidr
+    service_cidr       = var.vnet_service_cidr
     load_balancer_sku  = var.network_load_balancer_sku
   }
 
