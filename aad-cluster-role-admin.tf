@@ -13,4 +13,5 @@ resource "kubernetes_cluster_role_binding" "admin" {
     name      = var.rbac_aad_admin
     api_group = "rbac.authorization.k8s.io"
   }
+  depends_on = [azurerm_kubernetes_cluster.cloudcommons]
 }
