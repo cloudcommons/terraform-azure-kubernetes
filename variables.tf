@@ -72,7 +72,7 @@ variable node_pool_name {
 variable node_pool_count {
   type        = number
   description = "(Optional) Number of pool virtual machines to create. Default: 3"
-  default     = 3
+  default     = 2
 }
 
 variable node_pool_os_disk_size_gb {
