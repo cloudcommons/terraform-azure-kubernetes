@@ -1,5 +1,5 @@
 locals {
-  kube_config = azurerm_kubernetes_cluster.cloudcommons.kube_admin_config
+  kube_config = azurerm_kubernetes_cluster.cloudcommons.kube_config.0
 }
 
 provider "kubernetes" {
