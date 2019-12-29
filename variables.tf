@@ -12,12 +12,6 @@ variable resource_group {
   description = "(Required) The name of the resource group in which to create the virtual network."
 }
 
-variable resource_group_create {
-  type = bool
-  description = "(Optional) Creates the resource group. Defaults to true"
-  default = true
-}
-
 variable kubernetes_version {
   type        = string
   description = "(Required) Version of Kubernetes specified when creating the AKS managed cluster. If not specified, the latest recommended version will be used at provisioning time (but won't auto-upgrade). NOTE: Upgrading your cluster may take up to 10 minutes per node."

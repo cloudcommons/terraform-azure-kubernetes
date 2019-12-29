@@ -37,6 +37,8 @@ Most companies don't give admin rights over AzureAD to a Service Principal. This
 
 ### Use this module
 
+Please note that the resource group for this AKS should exist. The module won't create it for you.
+
 #### Deploy a cluster with Kubernetes RBAC
 
 The following module definition creates an AKS cluster with the following features:
