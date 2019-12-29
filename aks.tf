@@ -7,7 +7,7 @@ locals {
 resource "azurerm_kubernetes_cluster" "cloudcommons" {
   name                = var.name
   location            = module.rg.location
-  resource_group_name = module.rg.name
+  resource_group_name = local.resource_group_name
   dns_prefix          = var.dns_prefix
   kubernetes_version  = var.kubernetes_version
   node_resource_group = local.node_resource_group
