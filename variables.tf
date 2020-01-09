@@ -200,6 +200,12 @@ variable linux_ssh_key {
   description = "(Required) The Public SSH Key used to access the cluster. Changing this forces a new resource to be created."
 }
 
+variable vnet_service_id {
+  type        = string
+  description = "(Optional) If specified, uses an existing VNET instead of creating a new one"
+  default     = null
+}
+
 variable vnet_address_space {
   type        = list(string)
   description = "(Required) The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
