@@ -114,7 +114,7 @@ variable "auto_scaling_max_count" {
 variable "kube_dashboard_enabled" {
   type        = bool
   description = "(Optional) Is the Kubernetes Dashboard enabled?"
-  default     = true
+  default     = false
 }
 
 variable node_pool_vm_size {
