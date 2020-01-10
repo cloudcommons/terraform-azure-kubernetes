@@ -200,6 +200,12 @@ variable linux_ssh_key {
   description = "(Required) The Public SSH Key used to access the cluster. Changing this forces a new resource to be created."
 }
 
+variable vnet_create {
+  type        = bool
+  description = "(Optional) Indicates if the module should create a VNET or use an existing one. Defaults to true"
+  default     = true
+}
+
 variable vnet_service_id {
   type        = string
   description = "(Optional) If specified, uses an existing VNET instead of creating a new one"
