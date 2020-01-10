@@ -214,7 +214,7 @@ variable vnet_service_id {
 
 variable vnet_address_space {
   type        = list(string)
-  description = "(Required) The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
+  description = "(Optional) The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
   default     = ["10.0.0.0/21"]
 }
 
@@ -232,8 +232,8 @@ variable vnet_dns_servers {
 
 variable vnet_ddos_enabled {
   type        = bool
-  description = "(Optional) Adds a DDOS protection to the VNET. False by default"
-  default     = true
+  description = "(Optional) Adds a DDOS protection to the VNET. Defaults to false"
+  default     = false
 }
 
 variable vnet_nsg_enabled {
