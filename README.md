@@ -54,7 +54,7 @@ The following module definition creates an AKS cluster with the following featur
 | VNET Address space        | 10.0.0.0/21                                   |
 | VNET NSG                  | Yes (Ingress)                                 |
 | Subnets                   | 3 subnets                                     |
-| Kubernetes Dashboard      | Yes                                           |
+| Kubernetes Dashboard      | No                                            |
 
 ```tf
 module "kubernetes" {
@@ -84,7 +84,7 @@ linux_ssh_key              = "0000000000000000000000000000000000000000="
 | VNET Address space        | 10.0.0.0/21                                   |
 | VNET NSG                  | Yes (Ingress)                                 |
 | Subnets                   | 3 subnets                                     |
-| Kubernetes Dashboard      | Yes                                           |
+| Kubernetes Dashboard      | No                                            |
 
 ```tf
 module "kubernetes" {
