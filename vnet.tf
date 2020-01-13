@@ -1,6 +1,6 @@
 module "vnet" {
   source         = "cloudcommons/vnet/azure"
-  version        = "0.1.1"
+  version        = "0.1.2"
   name           = var.name
   enabled        = local.vnet_enabled
   location       = var.location
