@@ -3,6 +3,7 @@ locals {
   node_resource_group = var.node_resource_group == "" ? "${var.name}-aks-${var.node_pool_name}-${var.location}" : var.node_resource_group
   cluster_subnet_id   = local.vnet_enabled ? module.vnet.subnets.1.id : var.vnet_service_id // Assuming the cluster subnet is second in the Subnet list
   dns_service_ip      = cidrhost(var.vnet_service_cidr, 2)
+  oms_enabled         = var.oms_log_analytics_workspace_id != null
 }
 
 resource "azurerm_kubernetes_cluster" "cloudcommons" {
@@ -63,6 +64,10 @@ resource "azurerm_kubernetes_cluster" "cloudcommons" {
   addon_profile {
     kube_dashboard {
       enabled = var.kube_dashboard_enabled
+    }
+    oms_agent {
+      enabled = local.oms_enabled
+      log_analytics_workspace_id = var.oms_log_analytics_workspace_id
     }
   }
 
