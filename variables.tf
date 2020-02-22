@@ -96,19 +96,19 @@ variable "node_pool_type" {
 variable "auto_scaling_enable" {
   type        = bool
   description = "(Optional) Should the Kubernetes Auto Scaler be enabled for this Node Pool? Defaults to false."
-  default     = true
+  default     = false
 }
 
 variable "auto_scaling_min_count" {
   type        = number
   description = "(Optional) The minimum number of nodes which should exist in this Node Pool. If specified this must be between 1 and 100"
-  default     = 2
+  default     = 0
 }
 
 variable "auto_scaling_max_count" {
   type        = number
   description = "(Optional) The maximum number of nodes which should exist in this Node Pool. If specified this must be between 1 and 100."
-  default     = 16
+  default     = 0
 }
 
 variable "kube_dashboard_enabled" {
