@@ -22,8 +22,8 @@ resource "azurerm_kubernetes_cluster" "cloudcommons" {
     os_disk_size_gb       = var.node_pool_os_disk_size_gb
     vnet_subnet_id        = local.cluster_subnet_id
     enable_auto_scaling   = var.auto_scaling_enable
-    min_count             = var.auto_scaling_enable == true ? var.auto_scaling_min_count : 0
-    max_count             = var.auto_scaling_enable == true ? var.auto_scaling_max_count : 0
+    min_count             = var.auto_scaling_enable == true ? var.auto_scaling_min_count : null
+    max_count             = var.auto_scaling_enable == true ? var.auto_scaling_max_count : null
   }
 
   linux_profile {
