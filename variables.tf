@@ -268,3 +268,9 @@ variable vnet_subnets {
     }
   ]
 }
+
+variable oms_log_analytics_workspace_id {
+  type        = string
+  description = "(Optional) The Log Analytics Workspace id when the OMS should store logs."
+  default     = null
+}
