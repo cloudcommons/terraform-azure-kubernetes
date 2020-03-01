@@ -48,7 +48,7 @@ The following module definition creates an AKS cluster with the following featur
 | Network policy            | Calico                                        |
 | Virtual Machine Size      | Standard_DS3_v2 (4 cores, 16 GB RAM)          |
 | Auto-scaler               | Yes (Min 2, Max 16) - Up to 64 cores, 256 RAM |
-| VNET Address space        | 10.0.0.0/21                                   |
+| VNET Address space        | 172.16.0.0/18                                 |
 | VNET NSG                  | Yes (Ingress)                                 |
 | Subnets                   | 3 subnets                                     |
 | Kubernetes Dashboard      | No                                            |
@@ -78,7 +78,7 @@ linux_ssh_key              = "0000000000000000000000000000000000000000="
 | Network policy            | Calico                                        |
 | Virtual Machine Size      | Standard_DS3_v2 (4 cores, 16 GB RAM)          |
 | Auto-scaler               | Yes (Min 2, Max 16) - Up to 64 cores, 256 RAM |
-| VNET Address space        | 10.0.0.0/21                                   |
+| VNET Address space        | 172.16.0.0/18                                 |
 | VNET NSG                  | Yes (Ingress)                                 |
 | Subnets                   | 3 subnets                                     |
 | Kubernetes Dashboard      | No                                            |
