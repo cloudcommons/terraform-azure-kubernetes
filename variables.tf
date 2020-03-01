@@ -215,13 +215,13 @@ variable vnet_service_id {
 variable vnet_address_space {
   type        = list(string)
   description = "(Optional) The address space that is used the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
-  default     = ["10.0.0.0/21"]
+  default     = ["172.16.0.0/18"]
 }
 
 variable vnet_service_cidr {
   type        = string
   description = "(Optional) The service cidr"
-  default     = "10.0.2.0/23"
+  default     = "172.16.32.0/20"
 }
 
 variable vnet_dns_servers {
@@ -251,13 +251,8 @@ variable vnet_subnets {
   description = "(Optional) Creates the given subnets in the VNET. IMPORTANT: Services subnet should be the second Subnet in this list, as the network_profile is assuming this."
   default = [
     {
-      name           = "Ingresses"
-      address_prefix = "10.0.0.0/23"
-      security_group = true
-    },
-    {
       name           = "Cluster"
-      address_prefix = "10.0.4.0/22"
+      address_prefix = "172.16.0.0/19"
       security_group = false
     }
   ]
