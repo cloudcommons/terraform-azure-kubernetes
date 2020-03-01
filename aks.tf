@@ -1,7 +1,7 @@
 locals {
   vnet_enabled        = var.vnet_create && var.vnet_service_id == null
   node_resource_group = var.node_resource_group == "" ? "${var.name}-aks-${var.node_pool_name}-${var.location}" : var.node_resource_group
-  cluster_subnet_id   = local.vnet_enabled ? module.vnet.subnets.1.id : var.vnet_service_id // Assuming the cluster subnet is second in the Subnet list
+  cluster_subnet_id   = local.vnet_enabled ? module.vnet.subnets.0.id : var.vnet_service_id // Assuming the cluster subnet is first in the Subnet list
   dns_service_ip      = cidrhost(var.vnet_service_cidr, 2)
   oms_enabled         = var.oms_log_analytics_workspace_id != null
 }

@@ -255,12 +255,6 @@ variable vnet_subnets {
       address_prefix = "10.0.0.0/23"
       security_group = true
     },
-    # Azure don't like Terraform to create the service subnet... so we should skip it
-    # {
-    #   name           = "Services"
-    #   address_prefix = "10.0.2.0/23"
-    #   security_group = false
-    # },
     {
       name           = "Cluster"
       address_prefix = "10.0.4.0/22"
