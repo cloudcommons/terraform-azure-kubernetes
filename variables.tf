@@ -221,7 +221,7 @@ variable vnet_address_space {
 variable vnet_service_cidr {
   type        = string
   description = "(Optional) The service cidr"
-  default     = "172.16.32.0/20"
+  default     = "172.16.32.0/19"
 }
 
 variable vnet_dns_servers {

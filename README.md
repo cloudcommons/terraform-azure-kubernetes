@@ -19,14 +19,11 @@ This [Microsoft Docs](https://docs.microsoft.com/en-us/azure/aks/configure-azure
 By default, this module has been planned in the following way:
 
 * Pods per node: 60
-* Max nodes: 16
-* Max pods: 60 * 16 = 960
-* VNET CIDR: 10.0.0.0/21
-  * Ingress subnet: 10.0.0.0/23 (500 IP address / Internal endpoints / Load Balancers \*)
-  * Service subnet: 10.0.2.0/23 (500 IP address / Services)
-  * Cluster subnet: 10.0.4.0/22 (1000 IP Address / 16 Nodes + 984 pods)
-
-\* About Load Balancers: This Module has reserved a subnet where you can plug Azure Load Balancers in "internal" mode. Ideally, any internal facing ingress should be plugged there. Otherwise, the total capacity of the Cluster subnet will be lower, reducing the Max nodes this deployment supports.
+* Max nodes supported by the VNET: 133
+* Max pods: 60 * 133 = 7980
+* VNET CIDR: 172.16.0.0/18 (16,382 usable hosts)
+  * Cluster subnet: 172.16.0.0/19 (8190 usable hosts / Nodes / Pods / External Load Balancers)
+  * Service subnet: 172.16.32.0/19 (8190 usable hosts / Services)  
 
 ### Request Azure Active Directory
 
