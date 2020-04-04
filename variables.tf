@@ -2,6 +2,7 @@ variable name {
   type        = string
   description = "(Required) The name of the Azure Kubernetes Service. Changing this forces a new resource to be created."
 }
+
 variable location {
   type        = string
   description = "(Required) The location where the resource group should be created. For a list of all Azure locations, please consult this link or run az account list-locations --output table."
@@ -260,6 +261,25 @@ variable vnet_subnets {
 
 variable oms_log_analytics_workspace_id {
   type        = string
-  description = "(Optional) The Log Analytics Workspace id when the OMS should store logs."
+  description = "(Optional) The Log Analytics Workspace id where the OMS should store logs."
   default     = null
+}
+
+variable api_server_authorized_ip_ranges {
+  type        = list(string)
+  description = "(Optional) The IP ranges to whitelist for incoming traffic to the masters."
+  default     = []
+}
+
+variable http_application_routing_enabled {
+  type        = bool
+  description = "(Optional) Enables http application routing"
+  default     = false
+}
+
+# Feature is in preview so deafautl is disabled.
+variable enable_pod_security_policy {
+  type        = bool
+  description = "(Optional) Enables http application routing"
+  default     = false
 }

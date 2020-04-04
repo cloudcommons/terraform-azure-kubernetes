@@ -7,12 +7,14 @@ locals {
 }
 
 resource "azurerm_kubernetes_cluster" "cloudcommons" {
-  name                = var.name
-  location            = var.location
-  resource_group_name = var.resource_group
-  dns_prefix          = var.dns_prefix
-  kubernetes_version  = var.kubernetes_version
-  node_resource_group = local.node_resource_group
+  name                            = var.name
+  location                        = var.location
+  resource_group_name             = var.resource_group
+  dns_prefix                      = var.dns_prefix
+  kubernetes_version              = var.kubernetes_version
+  node_resource_group             = local.node_resource_group
+  api_server_authorized_ip_ranges = var.api_server_authorized_ip_ranges
+  enable_pod_security_policy      = var.enable_pod_security_policy
 
   default_node_pool {
     name                  = var.node_pool_name
@@ -48,10 +50,10 @@ resource "azurerm_kubernetes_cluster" "cloudcommons" {
     dynamic "azure_active_directory" {
       for_each = var.rbac_aad == true ? [1] : []
       content {
-        client_app_id = var.rbac_aad_client_app_id
-        server_app_id = var.rbac_aad_server_app_id
+        client_app_id     = var.rbac_aad_client_app_id
+        server_app_id     = var.rbac_aad_server_app_id
         server_app_secret = var.rbac_aad_server_app_secret
-        tenant_id = var.rbac_aad_tenant_id
+        tenant_id         = var.rbac_aad_tenant_id
       }
     }
   }
@@ -62,11 +64,14 @@ resource "azurerm_kubernetes_cluster" "cloudcommons" {
   }
 
   addon_profile {
+    http_application_routing {
+      enabled = var.http_application_routing_enabled
+    }
     kube_dashboard {
       enabled = var.kube_dashboard_enabled
     }
     oms_agent {
-      enabled = local.oms_enabled
+      enabled                    = local.oms_enabled
       log_analytics_workspace_id = var.oms_log_analytics_workspace_id
     }
   }
